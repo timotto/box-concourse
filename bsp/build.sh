@@ -26,5 +26,5 @@ cd ..
 
 eval "$(grep ^PTXCONF_PLATFORM= bsp/configs/${PLATFORM}/platformconfig)"
 
-cp -v bsp/platform-${PTXCONF_PLATFORM}/images* "${RELEASE_BUILD_DIR}"
+cp -v bsp/platform-${PTXCONF_PLATFORM}/images/* "${RELEASE_BUILD_DIR}"
 tar -cv -C "$RELEASE_BUILD_DIR" . | xz > $PACKAGE
