@@ -1,4 +1,4 @@
-#!/bin/sj
+#!/bin/sh
 
 PTXC=ci/tools/ptxconf.sh
 $PTXC
