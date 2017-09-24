@@ -8,9 +8,12 @@ RELEASE_BUILD_DIR="$(pwd)/build-repease"
 IPKG_REPOSITORY="${RELEASE_BUILD_DIR}/ipkg-repository"
 mkdir -p "$RELEASE_BUILD_DIR" "$IPKG_REPOSITORY"
 
-cd bsp
+cwd="$(pwd)"
+cd "$BSP_DIRECTORY"
 ptxdist platform configs/${PLATFORM}/platformconfig
-ptxdist select configs/ptxconfig
+[ -f configs/${PLATFORM}/ptxconfig ] \
+    && ptxdist select configs/${PLATFORM}/ptxconfig \
+    || ptxdist select configs/ptxconfig
 
 # configure source download from artifact storage
 $PTXC \
@@ -22,9 +25,9 @@ ptxdist go
 ptxdist images
 ptxdist make ipkg-push
 
-cd ..
+cd "$cwd"
 
-eval "$(grep ^PTXCONF_PLATFORM= bsp/configs/${PLATFORM}/platformconfig)"
+eval "$(grep ^PTXCONF_PLATFORM= ${BSP_DIRECTORY}/configs/${PLATFORM}/platformconfig)"
 
-cp -v bsp/platform-${PTXCONF_PLATFORM}/images/* "${RELEASE_BUILD_DIR}"
+cp -v ${BSP_DIRECTORY}/platform-${PTXCONF_PLATFORM}/images/* "${RELEASE_BUILD_DIR}"
 tar -cv -C "$RELEASE_BUILD_DIR" . | xz > $PACKAGE
