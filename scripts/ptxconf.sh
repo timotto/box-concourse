@@ -30,9 +30,9 @@ fail() {
 }
 
 while [ -n "$1" ]; do case "$1" in
-  setup) 			ptxc_setup 												;;
-  ptxconfig) 		ptxc_ptxconf 											;;
-  set) 				shift; ptxc_remove "$1" ; ptxc_add "$1" "$2" ; shift 	;;
-  remove) 			shift; ptxc_remove "$1" 								;;
-  *) 				fail "Invalid argument: $1"								;;
+  setup)			ptxc_setup 												;;
+  ptxconfig)		ptxc_ptxconf 											;;
+  set)				shift; ptxc_remove "$1" ; ptxc_add "$1" "$2" ; shift 	;;
+  remove)			shift; ptxc_remove "$1" 								;;
+  *)				fail "Invalid argument: $1"								;;
 esac ; shift ; done
