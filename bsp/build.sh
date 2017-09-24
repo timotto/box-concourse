@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 dpkg -i ptxdist-root-bucket/*deb
 dpkg -i toolchain-bucket/*deb
