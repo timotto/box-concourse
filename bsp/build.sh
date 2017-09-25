@@ -21,6 +21,10 @@ $PTXC \
     set PTXCONF_SETUP_PTXMIRROR "$PRIVATE_SOURCES_URL" \
     set PTXCONF_SETUP_IPKG_REPOSITORY "$IPKG_REPOSITORY"
 
+[ "x$PRIVATE_SOURCES_ONLY" = "xtrue" ] \
+  && $PTXC setup set PTXCONF_SETUP_PTXMIRROR_ONLY y
+  || true
+
 ptxdist go
 ptxdist images
 ptxdist make ipkg-push
