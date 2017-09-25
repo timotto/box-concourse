@@ -22,7 +22,7 @@ $PTXC \
     set PTXCONF_SETUP_IPKG_REPOSITORY "$IPKG_REPOSITORY"
 
 [ "x$PRIVATE_SOURCES_ONLY" = "xtrue" ] \
-  && $PTXC setup set PTXCONF_SETUP_PTXMIRROR_ONLY y
+  && $PTXC setup set PTXCONF_SETUP_PTXMIRROR_ONLY y \
   || true
 
 ptxdist go
